@@ -1,0 +1,29 @@
+form
+{
+    border-radius: 10px;
+    box-shadow: 2px 2px 30px 1px lightgrey;
+    width: 60%;
+    margin: 80px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+form div
+{
+    width: 100%;
+}
+
+form div input
+{
+    width: 100%;
+    padding: 15px;
+    border: 1px solid rgb(49, 3, 237);
+    outline: none;
+}
+
+form .btn
+{
+    background-color: rgb(23, 111, 23);
+}

@@ -1,0 +1,13 @@
+nav
+{
+    background-color:darkblue ;
+    padding: 20px;
+}
+nav a
+{
+    color: white;
+    margin-left: 250px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
