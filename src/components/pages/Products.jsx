@@ -12,6 +12,8 @@ function Products() {
 
   let [products, setproducts] = useState([]);
   let navigateToProductDetails = useNavigate()
+  let navigateToupdateProducts = useNavigate()
+
 
   let getProducts = async () => {
     try {
@@ -31,6 +33,11 @@ function Products() {
 
     navigateToProductDetails(`/productdetails/${pid}`)
   }
+
+  let updateProduct = (id) => {
+    localStorage.setItem("productId", id)
+    navigateToupdateProducts("/updateproduct")
+  }
   return (
     <section className='products'>
       {products.map(({ id, pname, price, imgurl }, slno) => {
@@ -42,7 +49,7 @@ function Products() {
           <ButtonComponent classname="view" onclick={() => { viewProduct(id) }}>
             <FaEye />
           </ButtonComponent>
-          <ButtonComponent classname="update">
+          <ButtonComponent classname="update" onclick={() => { updateProduct(id) }}>
             <MdEdit />
           </ButtonComponent>
           <ButtonComponent classname="delete">
