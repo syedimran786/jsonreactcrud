@@ -6,11 +6,14 @@ import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Popup from '../Popup';
 
 
 function Products() {
 
   let [products, setproducts] = useState([]);
+  let [shoemodal, setshowmodal] = useState(false);
+
   let navigateToProductDetails = useNavigate()
   let navigateToupdateProducts = useNavigate()
 
@@ -38,8 +41,23 @@ function Products() {
     localStorage.setItem("productId", id)
     navigateToupdateProducts("/updateproduct")
   }
+  let deleteProduct = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/products/${id}`)
+      setshowmodal(true)
+    }
+    catch (err) {
+      console.log(err)
+    }
+    getProducts()
+
+    setTimeout(() => {
+      setshowmodal(false)
+    }, 3000);
+  }
   return (
     <section className='products'>
+      {shoemodal && <Popup message={`Product Deleted Successfully`} classname="delete-message" />}
       {products.map(({ id, pname, price, imgurl }, slno) => {
         return <div className='product' key={id}>
           <h3>{slno + 1}</h3>
@@ -52,7 +70,7 @@ function Products() {
           <ButtonComponent classname="update" onclick={() => { updateProduct(id) }}>
             <MdEdit />
           </ButtonComponent>
-          <ButtonComponent classname="delete">
+          <ButtonComponent classname="delete" onclick={() => { deleteProduct(id) }}>
             <MdDelete />
           </ButtonComponent>
         </div>

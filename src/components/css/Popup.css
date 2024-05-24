@@ -1,0 +1,26 @@
+.popup
+{
+    width: 500px;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 50px auto;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
+.added-message
+{
+    background-color:rgb(5, 162, 78) ;
+}
+
+.update-message
+{
+    background-color: rgb(85, 85, 212);
+}
+
+.delete-message
+{
+    background-color: rgb(197, 18, 18);
+}

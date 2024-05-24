@@ -5,6 +5,7 @@ import "../css/Home.css"
 import ButtonComponent from '../ButtonComponent'
 import axios from 'axios'
 import { faker } from '@faker-js/faker'
+import Popup from '../Popup'
 
 function UpdateProduct() {
 
@@ -17,7 +18,7 @@ function UpdateProduct() {
     let updateProduct = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:3000/products/${productId }`, product)
+            await axios.put(`http://localhost:3000/products/${productId}`, product)
         }
         catch (err) {
             console.log(err)
@@ -41,19 +42,23 @@ function UpdateProduct() {
 
 
     return (
-        <form onSubmit={updateProduct}>
-            {inputDetails.map(i => {
-                i.value = product[i.name];
-                return <InputComponent key={i.id} {...i}
-                    onchange={changeProduct} />
-            }
-            )}
+        <>
+            <Popup message={`${product.pname} Updated Successfully`}
+                classname="update-message" />
+            <form onSubmit={updateProduct}>
+                {inputDetails.map(i => {
+                    i.value = product[i.name];
+                    return <InputComponent key={i.id} {...i}
+                        onchange={changeProduct} />
+                }
+                )}
 
-            <ButtonComponent classname={"btn"} >
-                Update
-            </ButtonComponent>
+                <ButtonComponent classname={"btn"} >
+                    Update
+                </ButtonComponent>
 
-        </form>
+            </form>
+        </>
     )
 }
 
