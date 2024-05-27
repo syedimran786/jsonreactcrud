@@ -6,11 +6,12 @@ import ButtonComponent from '../ButtonComponent'
 import axios from 'axios'
 import { faker } from '@faker-js/faker'
 import Popup from '../Popup'
+import { useModal } from '../useModal'
 
 function Home() {
 
   let [product, setProduct] = useState({ pname: "", price: "", qty: "", color: "", desc: "" })
-  let [showModal, setShowModal] = useState(false)
+  let { hidePopup, setshowmodal, showmodal } = useModal()
 
   let changeProduct = ({ target: { name, value } }) => {
     setProduct({ ...product, [name]: value })
@@ -21,18 +22,16 @@ function Home() {
     product.imgurl = faker.internet.avatar();
     try {
       await axios.post("http://localhost:3000/products", product);
-      setShowModal(true)
+      setshowmodal(true)
     }
     catch (err) {
       console.log(err)
     }
-    setTimeout(() => {
-      setShowModal(false)
-    }, 3000)
+    hidePopup()
   }
   return (
     <>
-      {showModal && <Popup classname="added-message"
+      {showmodal && <Popup classname="added-message"
         message={`${product.pname} Added Successfully`} />}
 
       <form onSubmit={addProduct}>

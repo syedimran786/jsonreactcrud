@@ -7,12 +7,13 @@ import { MdEdit } from "react-icons/md";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Popup from '../Popup';
+import { useModal } from '../useModal';
 
 
 function Products() {
 
   let [products, setproducts] = useState([]);
-  let [shoemodal, setshowmodal] = useState(false);
+  let { hidePopup, setshowmodal, showmodal } = useModal()
 
   let navigateToProductDetails = useNavigate()
   let navigateToupdateProducts = useNavigate()
@@ -51,13 +52,11 @@ function Products() {
     }
     getProducts()
 
-    setTimeout(() => {
-      setshowmodal(false)
-    }, 3000);
+    hidePopup()
   }
   return (
     <section className='products'>
-      {shoemodal && <Popup message={`Product Deleted Successfully`} classname="delete-message" />}
+      {showmodal && <Popup message={`Product Deleted Successfully`} classname="delete-message" />}
       {products.map(({ id, pname, price, imgurl }, slno) => {
         return <div className='product' key={id}>
           <h3>{slno + 1}</h3>
