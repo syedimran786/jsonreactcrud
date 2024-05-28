@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ButtonComponent from '../ButtonComponent'
 import "../css/Products.css"
 import { FaEye } from "react-icons/fa";
@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Popup from '../Popup';
 import { useModal } from '../useModal';
+import { AuthContext } from '../Authentication';
 
 
 function Products() {
@@ -17,6 +18,7 @@ function Products() {
 
   let navigateToProductDetails = useNavigate()
   let navigateToupdateProducts = useNavigate()
+
 
 
   let getProducts = async () => {

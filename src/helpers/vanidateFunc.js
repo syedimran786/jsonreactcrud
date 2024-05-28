@@ -2,7 +2,8 @@ let validateForm = (formValues) => {
 
     let errors = {};
 
-    let fullnameRegex = /^[a-zA-Z]+$/g
+    let fullnameRegex = /^[a-zA-Z]+$/g;
+    let mobileRegex = /^[6-9][0-9]{9}$/
 
     //! Fullname
     if (formValues.fullname === "") {
@@ -28,11 +29,8 @@ let validateForm = (formValues) => {
     if (formValues.mobile === "") {
         errors.mobile = "Mobile Is Mandatory"
     }
-    else if (formValues.mobile.length < 10) {
-        errors.mobile = "Mobile Should Contain Atleast 10 Numbers"
-    }
-    else if (formValues.mobile.length > 10) {
-        errors.mobile = "Mobile Sould Not Exceed More Than 10 Numbers"
+    else if (!mobileRegex.test(formValues.mobile)) {
+        errors.mobile = "Invalid Mobile Number"
     }
     return errors
 }

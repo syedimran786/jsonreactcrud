@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ButtonComponent from '../ButtonComponent'
 import { validateForm } from '../../helpers/vanidateFunc'
 
@@ -9,17 +9,25 @@ function Signup() {
 
     let changeFdata = ({ target: { value, name } }) => {
         setfdata({ ...fdata, [name]: value })
+
     }
 
     let sendFormData = (e) => {
         e.preventDefault();
-        console.log(fdata)
         setFormErrors(validateForm(fdata))
+
+        let fdataLength = Object.keys(validateForm(fdata)).length;
+
+        if (fdataLength === 0) {
+            console.log(fdata)
+        }
+        else {
+            return
+        }
+
     }
 
 
-
-    console.log("rendered")
 
     return (
         <form onSubmit={sendFormData}>
