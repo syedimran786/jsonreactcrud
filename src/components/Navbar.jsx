@@ -11,6 +11,7 @@ function Navbar() {
         <nav>
             <NavLink to="/">Home</NavLink>
             <NavLink to="/products">Products</NavLink>
+            <NavLink to="/images">Images</NavLink>
 
             {!isloggin && <NavLink to="/login">Login</NavLink>}
 
