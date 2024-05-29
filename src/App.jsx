@@ -8,6 +8,7 @@ import Login from './components/pages/Login'
 import Signup from './components/pages/Signup'
 import Navbar from './components/Navbar'
 import Authentication from './components/Authentication'
+import ProtectedProducts from './components/pages/ProtectedProducts'
 
 
 
@@ -22,7 +23,9 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
 
-          <Route path='/products' element={<Products />} />
+          <Route path='/products' element={<ProtectedProducts>
+            <Products />
+          </ProtectedProducts>} />
 
 
           <Route path='/productdetails/:pid' element={<ProductDetails />} />
