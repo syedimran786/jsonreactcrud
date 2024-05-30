@@ -9,9 +9,9 @@ import Signup from './components/pages/Signup'
 import Navbar from './components/Navbar'
 import Authentication from './components/Authentication'
 import ProtectedProducts from './components/pages/ProtectedProducts'
-// import Images from './components/pages/Images'
+import Images from './components/pages/Images'
 
-let Images = lazy(() => import("./components/pages/Images"))
+// let Images = lazy(() => import("./components/pages/Images"))
 let ProductDetails = lazy(() => import('./components/pages/ProductDetails'))
 
 
@@ -36,9 +36,11 @@ function App() {
             <ProductDetails />
           </Suspense>} />
           <Route path='/updateproduct' element={<UpdateProduct />} />
-          <Route path='/images' element={<Suspense fallback="Loading.....">
+          {/* <Route path='/images' element={<Suspense fallback="Loading.....">
             <Images />
-          </Suspense>} />
+          </Suspense>} /> */}
+
+          <Route path='/images' element={<Images />} />
 
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Signup />} />

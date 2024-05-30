@@ -1,15 +1,39 @@
-import React from 'react'
+import ButtonComponent from "../ButtonComponent"
+import { useForm } from "react-hook-form"
 
-function Images() {
+let userErrors = {
+    required: { value: true, message: "Username is Mandatory" },
+    minLength: { value: 6, message: "Username Should Contain Atleast 6 Characters" },
+    pattern: { value: /^[A-Za-z]+$/g, message: "Username Should Contain Only Alphabets" }
+}
+
+let passErrors = {
+    required: { value: true, message: "Password is Mandatory" }
+}
+
+function Login() {
+
+    let { register, reset, formState: { errors }, handleSubmit } = useForm();
+    let sendForm = (data) => {
+        console.log(data);
+        reset()
+    }
+    console.log(errors)
+
+
     return (
-        <div>
-            {Array.from({ length: 20000 }, (_, id) => {
-                return <div key={id}>
-                    <img width="100px" src="https://images.pexels.com/photos/23644605/pexels-photo-23644605/free-photo-of-a-woman-standing-by-the-water-in-front-of-houses.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-                </div>
-            })}
-        </div>
+        <form onSubmit={handleSubmit(sendForm)}>
+            <div>
+                <input type="text" placeholder='Username' {...register("username", userErrors)} />
+                <small style={{ color: "red" }}>{errors.username?.message}</small>
+            </div>
+            <div>
+                <input type="password" placeholder='Password' {...register("password", passErrors)} />
+                <small style={{ color: "red" }}>{errors.password?.message}</small>
+            </div>
+            <ButtonComponent classname="update-message">Login</ButtonComponent>
+        </form>
     )
 }
 
-export default Images
+export default Login
